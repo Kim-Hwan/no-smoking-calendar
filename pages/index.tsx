@@ -1,16 +1,7 @@
 // pages/index.tsx
 "use client";
 
-import {
-  format,
-  getDaysInMonth,
-  startOfMonth,
-  addDays,
-  subMonths,
-  addMonths,
-  getDay,
-  isAfter
-} from "react";
+import { useEffect, useState } from "react";
 import {
   format,
   getDaysInMonth,
