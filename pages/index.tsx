@@ -48,14 +48,15 @@ export default function Home() {
       .channel("realtime_smoking")
       .on(
         "postgres_changes",
-        { event: "*", schema: "public", table: "smoking_dates" }, (payload) => {
-        setCheckedDates((prev) => {
+        { event: "*", schema: "public", table: "smoking_dates" },
+        (payload) => {
           const row = payload.new as { date: string; checked: boolean };
-          return {
+          setCheckedDates((prev) => ({
             ...prev,
-            [row.date]: row.checked,
-        }));
-      })
+            [row.date]: row.checked
+          }));
+        }
+      )
       .subscribe();
 
     return () => {
