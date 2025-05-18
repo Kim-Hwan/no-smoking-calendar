@@ -19,8 +19,7 @@ import {
   subMonths,
   addMonths,
   getDay,
-  isAfter,
-  isEqual
+  isAfter
 } from "date-fns";
 
 export default function Home() {
