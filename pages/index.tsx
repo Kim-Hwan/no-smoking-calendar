@@ -46,7 +46,9 @@ export default function Home() {
 
     const subscription = supabase
       .channel("realtime_smoking")
-      .on("postgres_changes", { event: "UPDATE", schema: "public", table: "smoking_dates" }, (payload) => {
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "smoking_dates" }, (payload) => {
         setCheckedDates((prev) => ({
           ...prev,
           [payload.new.date]: payload.new.checked,
