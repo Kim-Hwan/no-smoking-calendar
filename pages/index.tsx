@@ -49,9 +49,11 @@ export default function Home() {
       .on(
         "postgres_changes",
         { event: "*", schema: "public", table: "smoking_dates" }, (payload) => {
-        setCheckedDates((prev) => ({
-          ...prev,
-          [payload.new.date]: payload.new.checked,
+        setCheckedDates((prev) => {
+          const row = payload.new as { date: string; checked: boolean };
+          return {
+            ...prev,
+            [row.date]: row.checked,
         }));
       })
       .subscribe();
